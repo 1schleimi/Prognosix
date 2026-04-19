@@ -1,0 +1,14 @@
+yfinance
+torch
+torchvision
+torchaudio
+pandas
+numpy
+matplotlib
+fastapi
+uvicorn
+scikit-learn
+python-multipart
+python-dotenv
+statsmodels
+pyarrow
