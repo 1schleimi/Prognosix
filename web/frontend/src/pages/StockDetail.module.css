@@ -1,0 +1,436 @@
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+/* ── horizon selector ── */
+.horizonBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.horizonBarLabel {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: #333;
+  white-space: nowrap;
+}
+
+.horizonBtns {
+  display: flex;
+  gap: 8px;
+}
+
+.horizonBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 22px;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.horizonBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.horizonBtn:not(:disabled):hover { border-color: #39ff14; }
+
+.horizonBtnLabel {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: #555;
+  transition: color 0.15s;
+}
+
+.horizonBtnSub {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  color: #2a2a2a;
+  transition: color 0.15s;
+}
+
+.horizonActive {
+  border-color: #39ff14 !important;
+  background: rgba(57,255,20,0.06);
+}
+.horizonActive .horizonBtnLabel { color: #39ff14; }
+.horizonActive .horizonBtnSub   { color: #1a7a00; }
+
+/* ── header ── */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 28px;
+  height: 56px;
+  border-bottom: 1px solid #111;
+  background: rgba(0,0,0,0.95);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  border-radius: 3px;
+  color: #555;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  justify-self: start;
+}
+.back:hover { border-color: var(--green); color: var(--green); }
+
+.headerCenter {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  justify-self: center;
+}
+
+.headerTicker {
+  font-family: var(--font-disp);
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.headerPrice {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: #aaa;
+}
+
+.headerRight {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wlBtn {
+  background: transparent;
+  border: 1px solid #1f1f1f;
+  border-radius: 4px;
+  color: #444;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.wlBtn:hover:not(:disabled) { border-color: #39ff14; color: #39ff14; }
+.wlBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.wlBtnActive {
+  border-color: #39ff14;
+  color: #39ff14;
+  background: rgba(57,255,20,0.07);
+}
+.wlBtnActive:hover:not(:disabled) { border-color: #ff073a; color: #ff073a; background: rgba(255,7,58,0.07); }
+
+.headerChange {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* ── live price hero ── */
+.priceHero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  background: #060606;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  animation: slideIn 0.3s ease both;
+}
+
+.priceLeft {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.priceBig {
+  font-family: var(--font-disp);
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1;
+}
+
+.priceChange {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.priceRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.marketBadge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  padding: 3px 10px;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+}
+
+.marketOpen   { color: #39ff14; background: rgba(57,255,20,0.07); }
+.marketClosed { color: #444;    border-color: #222; }
+
+.prevClose {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #444;
+  letter-spacing: 0.1em;
+}
+
+/* ── body ── */
+.body {
+  flex: 1;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── prediction card ── */
+.predCard {
+  border: 1px solid #141414;
+  border-radius: 4px;
+  background: #060606;
+  padding: 28px 32px;
+  animation: slideIn 0.4s ease both;
+}
+
+.predLabel {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #333;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #222;
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.errorBox {
+  color: var(--red);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  padding: 14px;
+  border: 1px solid var(--red-dim);
+  border-radius: 3px;
+  background: var(--red-glow);
+}
+
+.predContent {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.predChange {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.predArrow {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.predPct {
+  font-family: var(--font-disp);
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.predStats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.predStat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 28px;
+}
+.predStat:first-child { padding-left: 0; }
+
+.predStatLabel {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: #333;
+}
+
+.predStatVal {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  color: #aaa;
+}
+
+.predDivider {
+  width: 1px;
+  height: 36px;
+  background: #141414;
+  flex-shrink: 0;
+}
+
+/* ── OHLC bar ── */
+.ohlcBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  background: #060606;
+  border: 1px solid #111;
+  border-radius: 4px;
+  min-height: 40px;
+}
+
+.ohlcTicker {
+  font-family: var(--font-disp);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  letter-spacing: 0.06em;
+  min-width: 50px;
+}
+
+.ohlcValues { display: flex; flex-wrap: wrap; }
+
+.ohlcHint {
+  font-size: 0.72rem;
+  color: #2a2a2a;
+  letter-spacing: 0.06em;
+}
+
+/* ── chart card ── */
+.chartCard {
+  border: 1px solid #111;
+  border-radius: 4px;
+  background: #060606;
+  padding: 20px;
+  animation: slideIn 0.4s ease 0.15s both;
+}
+
+/* ── confidence bar ── */
+.confidenceRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #111;
+}
+
+.confidenceLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  color: #333;
+  white-space: nowrap;
+}
+
+.confidenceBar {
+  flex: 1;
+  height: 3px;
+  background: #111;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.confidenceFill {
+  height: 100%;
+  background: linear-gradient(90deg, #1a7a00, #39ff14);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.confidenceVal {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #39ff14;
+  letter-spacing: 0.06em;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* ── disclaimer ── */
+.disclaimer {
+  font-size: 0.62rem;
+  color: #222;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* ── color utils ── */
+.green { color: var(--green); }
+.red   { color: var(--red); }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
